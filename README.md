@@ -9,5 +9,6 @@
 + 05.01: [Prefix and Suffix Search](./challenge/202105/week1/01_Prefix_and_Suffix_Search/main.go), (*[Python](./challenge/202105/week1/01_Prefix_and_Suffix_Search/main.py)*)
 + 05.03: [Running Sum of 1d Array](./challenge/202105/week1/03_Running_Sum_of_1d_Array/main.go)
 + 05.04: [Non-decreasing Array](./challenge/202105/week1/04_Non-decreasing_Array/main.go)
++ 05.05: [Jump Game II](./challenge/202105/week1/05_Jump_Game_ii/main.go)
 
 </details>
