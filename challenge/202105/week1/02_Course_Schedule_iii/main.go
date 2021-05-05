@@ -2,112 +2,49 @@
 package main
 
 import (
+	"container/heap"
 	"fmt"
 	"sort"
 )
 
-type maxHeap struct {
-	items []int
+type IntHeap []int
+
+func (h IntHeap) Len() int           { return len(h) }
+func (h IntHeap) Less(i, j int) bool { return h[i] > h[j] }
+func (h IntHeap) Swap(i, j int)      { h[i], h[j] = h[j], h[i] }
+func (h *IntHeap) Push(x interface{}) {
+	*h = append(*h, x.(int))
 }
 
-func (this *maxHeap) push(val int) {
-	length := len(this.items)
-	this.items = append(this.items, val)
-	curr := length
-	parent := (length - 1) / 2
-
-	for parent >= 0 {
-		if this.items[curr] > this.items[parent] {
-			this.items[curr], this.items[parent] = this.items[parent], this.items[curr]
-			curr = parent
-			parent = (curr - 1) / 2
-		} else {
-			break
-		}
-	}
-}
-
-func (this *maxHeap) pop() int {
-	length := len(this.items)
-	if length == 0 {
-		return 0
-	}
-
-	result := this.items[0]
-	this.items[0] = this.items[length-1]
-	this.items = this.items[:length-1]
-	length -= 1
-	parent := 0
-	child1 := 2*parent + 1
-	child2 := 2*parent + 2
-
-	for child1 < length {
-		if child2 >= length {
-			if this.items[parent] < this.items[child1] {
-				this.items[parent], this.items[child1] = this.items[child1], this.items[parent]
-				parent = child1
-			} else {
-				break
-			}
-		} else {
-			if this.items[parent] < this.items[child1] {
-				if this.items[child1] < this.items[child2] {
-					this.items[parent], this.items[child2] = this.items[child2], this.items[parent]
-					parent = child2
-				} else {
-					this.items[parent], this.items[child1] = this.items[child1], this.items[parent]
-					parent = child1
-				}
-			} else if this.items[parent] < this.items[child2] {
-				this.items[parent], this.items[child2] = this.items[child2], this.items[parent]
-				parent = child2
-			} else {
-				break
-			}
-		}
-		child1 = 2*parent + 1
-		child2 = 2*parent + 2
-	}
-
-	return result
-}
-
-func (this *maxHeap) peek() int {
-	if len(this.items) > 0 {
-		return this.items[0]
-	}
-
-	return -1
-}
-
-func (this *maxHeap) length() int {
-	return len(this.items)
+func (h *IntHeap) Pop() interface{} {
+	old := *h
+	n := len(old)
+	item := old[n-1]
+	*h = old[0 : n-1]
+	return item
 }
 
 func scheduleCourse(courses [][]int) int {
-	var heap maxHeap
-
 	sort.Slice(courses, func(i, j int) bool {
 		return courses[i][1] < courses[j][1]
 	})
 
-	var taken, count int
+	pq := &IntHeap{}
+	heap.Init(pq)
+	time := 0
 
-	for i := 0; i < len(courses); i++ {
-		if taken+courses[i][0] <= courses[i][1] {
-			taken += courses[i][0]
-			count++
-			heap.push(courses[i][0])
-		} else {
-			if courses[i][0] < heap.peek() {
-				taken -= heap.pop()
-				taken += courses[i][0]
-				heap.push(courses[i][0])
-			}
+	for i := range courses {
+		if time+courses[i][0] <= courses[i][1] {
+			time += courses[i][0]
+			heap.Push(pq, courses[i][0])
+		} else if pq.Len() > 0 && (*pq)[0] > courses[i][0] {
+			max := heap.Pop(pq)
+			time += courses[i][0] - max.(int)
+			heap.Push(pq, courses[i][0])
 		}
 	}
 
-	return count
+	return pq.Len()
 }
 
 func print(answer int, expected int) {
