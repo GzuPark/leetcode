@@ -12,5 +12,6 @@
 + 05.04: [Non-decreasing Array](./challenge/202105/week1/04_Non-decreasing_Array/main.go)
 + 05.05: [Jump Game II](./challenge/202105/week1/05_Jump_Game_ii/main.go)
 + 05.06: [Convert Sorted List to Binary Search Tree](./challenge/202105/week1/06_Convert_Sorted_List_to_Binary_Search_Tree/main.go)
++ 05.07: [Delete Operation for Two Strings](./challenge/202105/week1/07_Delete_Operation_for_Two_Strings/main.go)
 
 </details>
