@@ -21,5 +21,6 @@
 + Lock: [Put Boxes Into the Warehouse I](./challenge/202105/week2/lock_Put_Boxes_Into_the_Warehouse_i/main.go)
 + 05.08: [Super Palindromes](./challenge/202105/week2/08_Super_Palindromes/main.go)
 + 05.09: [Construct Target Array With Multiple Sums](./challenge/202105/week2/09_Construct_Target_Array_With_Multiple_Sums/main.go)
++ 05.10: [Count Primes](./challenge/202105/week2/10_Count_Primes/main.go)
 
 </details>
