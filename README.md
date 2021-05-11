@@ -22,5 +22,6 @@
 + 05.08: [Super Palindromes](./challenge/202105/week2/08_Super_Palindromes/main.go)
 + 05.09: [Construct Target Array With Multiple Sums](./challenge/202105/week2/09_Construct_Target_Array_With_Multiple_Sums/main.go)
 + 05.10: [Count Primes](./challenge/202105/week2/10_Count_Primes/main.go)
++ 05.11: [Maximum Points You Can Obtain from Cards](./challenge/202105/week2/11_Maximum_Points_You_Can_Obtain_from_Cards/main.go)
 
 </details>
