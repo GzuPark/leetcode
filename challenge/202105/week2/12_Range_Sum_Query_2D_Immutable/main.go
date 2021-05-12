@@ -15,7 +15,7 @@ func Constructor(matrix [][]int) NumMatrix {
 	m.lenCol = len(matrix[0])
 	m.numMatrix = make([][]int, m.lenRow+1)
 
-	for i, _ := range m.numMatrix {
+	for i := range m.numMatrix {
 		m.numMatrix[i] = make([]int, m.lenCol+1)
 	}
 
