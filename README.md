@@ -24,5 +24,6 @@
 + 05.10: [Count Primes](./challenge/202105/week2/10_Count_Primes/main.go)
 + 05.11: [Maximum Points You Can Obtain from Cards](./challenge/202105/week2/11_Maximum_Points_You_Can_Obtain_from_Cards/main.go)
 + 05.12: [Range Sum Query 2D - Immutable](./challenge/202105/week2/12_Range_Sum_Query_2D_Immutable/main.go)
++ 05.14: [Flatten Binary Tree to Linked List](./challenge/202105/week2/14_Flatten_Binary_Tree_to_Linked_List/main.go)
 
 </details>
