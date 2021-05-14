@@ -10,23 +10,32 @@ type TreeNode struct {
 }
 
 func flatten(root *TreeNode) {
-	node := root
+	_flatten(root)
+}
 
-	for node != nil {
-		if node.Left != nil {
-			rightMost := node.Left
-
-			for rightMost.Right != nil {
-				rightMost = rightMost.Right
-			}
-
-			rightMost.Right = node.Right
-			node.Right = node.Left
-			node.Left = nil
-		}
-
-		node = node.Right
+func _flatten(node *TreeNode) *TreeNode {
+	if node == nil {
+		return nil
 	}
+
+	if node.Left == nil && node.Right == nil {
+		return node
+	}
+
+	left := _flatten(node.Left)
+	right := _flatten(node.Right)
+
+	if left != nil {
+		left.Right = node.Right
+		node.Right = node.Left
+		node.Left = nil
+	}
+
+	if right == nil {
+		return left
+	}
+
+	return right
 }
 
 func print(root *TreeNode) {
