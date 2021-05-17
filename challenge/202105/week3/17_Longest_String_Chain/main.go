@@ -1,39 +1,73 @@
 // Longest String Chain
 package main
 
-import (
-	"fmt"
-	"sort"
-)
+import "fmt"
 
-func max(a, b int) int {
-	if a > b {
-		return a
+func checkDiff(w1, w2 string) bool {
+	isDiff := false
+	i, j := 0, 0
+
+	for ; i < len(w1) && j < len(w2); j++ {
+		if w1[i] == w2[j] {
+			i++
+			continue
+		} else {
+			if isDiff {
+				return false
+			}
+			isDiff = true
+		}
 	}
-	return b
+
+	return !isDiff || j == len(w2)
+}
+
+func dfs(graph [][]int, visited []int, i int) int {
+	if visited[i] != 0 {
+		return visited[i]
+	}
+
+	maxLen := 0
+
+	for _, next := range graph[i] {
+		wordLen := dfs(graph, visited, next)
+		if maxLen < wordLen {
+			maxLen = wordLen
+		}
+	}
+
+	visited[i] = maxLen + 1
+
+	return visited[i]
 }
 
 func longestStrChain(words []string) int {
-	db := make(map[string]int)
+	db := make(map[int][]int)
+	graph := make([][]int, len(words))
 
-	sort.Slice(words, func(i, j int) bool {
-		return len(words[i]) < len(words[j])
-	})
+	for i := range words {
+		graph[i] = make([]int, 0)
+		wordLen := len(words[i])
+		db[wordLen] = append(db[wordLen], i)
+	}
 
-	maxLen, currLen := 1, 1
-
-	for _, word := range words {
-		currLen = 1
-
-		for i := 0; i < len(word); i++ {
-			sub := word[:i] + word[i+1:]
-
-			if prevLen, ok := db[sub]; ok {
-				currLen = max(currLen, prevLen+1)
+	for i := range graph {
+		wordLen := len(words[i]) + 1
+		for _, j := range db[wordLen] {
+			if checkDiff(words[i], words[j]) {
+				graph[i] = append(graph[i], j)
 			}
 		}
-		db[word] = currLen
-		maxLen = max(maxLen, currLen)
+	}
+
+	visited := make([]int, len(words))
+	maxLen := 0
+
+	for i := range graph {
+		wordLen := dfs(graph, visited, i)
+		if wordLen > maxLen {
+			maxLen = wordLen
+		}
 	}
 
 	return maxLen

@@ -29,6 +29,6 @@
 ### Week 3
 + 05.15: [Valid Number](./challenge/202105/week3/15_Valid_Number/main.go)
 + 05.16: [Binary Tree Cameras](./challenge/202105/week3/16_Binary_Tree_Cameras/main.go)
-+ 05.17: [Longest String Chain](./challenge/202105/week3/17_Longest_String_Chain/main.go)
++ 05.17: [Longest String Chain](./challenge/202105/week3/17_Longest_String_Chain/main.go), (*[Bottom Up](https://github.com/GzuPark/leetcode/blob/691479848a73aa3ddf6cbe2eb309643cc95b8926/challenge/202105/week3/17_Longest_String_Chain/main.go)*)
 
 </details>
