@@ -29,5 +29,6 @@
 ### Week 3
 + 05.15: [Valid Number](./challenge/202105/week3/15_Valid_Number/main.go)
 + 05.16: [Binary Tree Cameras](./challenge/202105/week3/16_Binary_Tree_Cameras/main.go)
++ 05.17: [Longest String Chain](./challenge/202105/week3/17_Longest_String_Chain/main.go)
 
 </details>
